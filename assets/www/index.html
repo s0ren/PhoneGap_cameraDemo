@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+	<!--
+	This is strongly inspired by Matt Gifford, PhoneGap Mobile Application Development Cookbook, chaptor 3
+	-->
   <head>
   	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
     <title>Photo Finder</title>
@@ -11,7 +14,11 @@
     	// nothing yet...
     }
 
+    // Event started from link id="cameraPhoto"
     function capturePhoto() {
+    	// This starts up the camera app on your device
+    	// onSuccess and onFail are callback functions, defined below
+    	// we also supply an option object
     	navigator.camera.getPicture(onSuccess, onFail, 
       	{ 
       		quality: 100, 
@@ -21,8 +28,11 @@
       );
     }
 
+    // Event started from link id="libraryPhoto"
 	function getPhoto() {
-	  navigator.camera.getPicture(onSuccess, onFail, 
+		// This starts the "gallery" app on your device.
+		// Same as above, but with more option in option object.
+		navigator.camera.getPicture(onSuccess, onFail, 
 	  	{ 
 	  		quality: 100, 
 	  		destinationType: Camera.DestinationType.FILE_URI, 
@@ -33,7 +43,9 @@
 	  );
 	}
 	
-    
+    // CallBack for success of getPicture
+	// This simply displays the image and filename i the html of this page
+	// We culd also upload the picture.
 	function onSuccess(imageURI) {
 		console.log("Success");
 	    var image = document.getElementById('image');
